@@ -15,12 +15,26 @@ def export_data(studentTable):
 
 def add_student(cursor, con, student_data):
     try:
+        # New validation before insert
+        if not all(student_data):
+            messagebox.showerror('Error', 'All fields are required before adding a student')
+            return
+        
+        # Check if student with same ID already exists
+        cursor.execute("SELECT id FROM students WHERE id=%s", (student_data[0],))
+        if cursor.fetchone():
+            messagebox.showwarning('Duplicate', f'Id {student_data[0]} already exists — choose a unique ID')
+            return
+
+        # Original insertion
         query = 'INSERT INTO students VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)'
         cursor.execute(query, student_data)
         con.commit()
-        messagebox.showinfo('Success', f'Id {student_data[0]} added successfully')
+        messagebox.showinfo('Success', f'Student added successfully with Id {student_data[0]}')
+
     except Exception as e:
-        messagebox.showerror('Error', f'Error adding student: {e}')
+        messagebox.showerror('Error', f'Failed to add student: {e}')
+
 
 def update_student(cursor, con, student_data):
     try:
