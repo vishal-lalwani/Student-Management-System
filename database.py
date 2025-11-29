@@ -1,3 +1,5 @@
+#This is to connect to the database
+
 import pymysql
 from tkinter import messagebox
 
