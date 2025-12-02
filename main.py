@@ -120,6 +120,12 @@ Button(leftFrame, text='Update Student', width=20).pack(pady=10)
 Button(leftFrame, text='Delete Student', width=20).pack(pady=10)
 Button(leftFrame, text='Export Data', width=20, command=lambda: export_data(studentTable)).pack(pady=10)
 
+''' Logout button for user '''
+def logout():
+    student_frame.pack_forget()
+    login_frame.pack(fill=BOTH, expand=1)
+Button(leftFrame, text='Logout', width=20, bg='red', fg='white', command=logout).pack(pady=10)
+
 # Right Frame - Table
 rightFrame = Frame(student_frame)
 rightFrame.pack(side=LEFT, padx=10, pady=20)

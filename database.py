@@ -14,6 +14,8 @@ def connect_to_mysql():
         messagebox.showerror('Error', f'Error connecting to MySQL: {err}')
         return None
 
+# function to add data
+8
 def setup_database():
     try:
         con = connect_to_mysql()
